@@ -1,15 +1,15 @@
 pipeline {
     agent any
 
-    tools{
+    tools {
         nodejs:'node'
-    
+    }
 
     stages {
         stage('Checkout') {
             steps {
                 // Checkout your code from your version control system
-               checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'git-pass', url: 'https://github.com/Saikumar2517/node.git']])
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'git-pass', url: 'https://github.com/Saikumar2517/node.git']])
             }
         }
         stage('Install dependencies') {
@@ -24,9 +24,6 @@ pipeline {
                 sh 'npm run build'
             }
         }
-     
     }
 
-   
-}
 }
