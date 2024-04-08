@@ -15,13 +15,14 @@ pipeline {
             steps {
                 // Use npm to install dependencies
                 sh 'npm install'
+                 sh 'npm run build'
             }
         }
-        stage('Build') {
-            steps {
-                // Build your Node.js application (if necessary)
-                sh 'npm run build'
-            }
+        // stage('Build') {
+        //     steps {
+        //         // Build your Node.js application (if necessary)
+        //         sh 'npm run build'
+        //     }
 
             stage('test') {
                 steps {
@@ -35,4 +36,4 @@ pipeline {
             }
         }
     }
-}
+
