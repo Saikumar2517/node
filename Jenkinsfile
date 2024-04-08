@@ -1,19 +1,27 @@
 pipeline {
-    agent any 
+    agent any
 
-    tools:{
-        nodejs:'node'
-
-    }
-    stages{
-        stage('checkout') {
-            /* groovylint-disable-next-line NglParseError */
-            checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'git-pass', url: 'https://github.com/Saikumar2517/node.git']])
+    stages {
+        stage('Checkout') {
+            steps {
+                // Checkout your code from your version control system
+                git 'https://github.com/Saikumar2517/node.git'
+            }
         }
-
-        stage('build') {
-            sh 'npm install'
-            sh 'npm run build'
+        stage('Install dependencies') {
+            steps {
+                // Use npm to install dependencies
+                sh 'npm install'
+            }
         }
+        stage('Build') {
+            steps {
+                // Build your Node.js application (if necessary)
+                sh 'npm run build'
+            }
+        }
+     
     }
+
+   
 }
