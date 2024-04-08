@@ -18,11 +18,6 @@ pipeline {
                  sh 'npm run build'
             }
         }
-        // stage('Build') {
-        //     steps {
-        //         // Build your Node.js application (if necessary)
-        //         sh 'npm run build'
-        //     }
 
             stage('test') {
                 steps {
