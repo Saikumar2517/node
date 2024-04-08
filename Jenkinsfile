@@ -3,7 +3,7 @@ pipeline {
 
     tools{
         nodejs:'node'
-    }
+    
 
     stages {
         stage('Checkout') {
@@ -28,4 +28,5 @@ pipeline {
     }
 
    
+}
 }
