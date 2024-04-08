@@ -5,7 +5,6 @@ pipeline {
         nodejs 'node' // Assuming 'nodejs' is the name of your Node.js tool installation in Jenkins
     }
 
-
     stages {
         stage('Checkout') {
             steps {
@@ -23,6 +22,16 @@ pipeline {
             steps {
                 // Build your Node.js application (if necessary)
                 sh 'npm run build'
+            }
+
+            stage('test') {
+                steps{
+                    sonar-scanner \
+  -Dsonar.projectKey=node \
+  -Dsonar.sources=. \
+  -Dsonar.host.url=http://localhost:9000 \
+  -Dsonar.token=sqp_1cbf29c35566b50d49b1eeb39ff56a79bfa5a31f
+                }
             }
         }
     }
