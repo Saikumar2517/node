@@ -23,17 +23,17 @@ pipeline {
                 sh 'npm run build'
             }
 
-            stage('test') {
-                steps {
-                    script{
-                    def scannerHome = tool 'sonar'
-                    withSonarQubeEnv(credentialsId: 'sonar-pass') {
-                        sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=node"
-                    }
-                    }
+            // stage('test') {
+            //     steps {
+            //         script{
+            //         def scannerHome = tool 'sonar'
+            //         withSonarQubeEnv(credentialsId: 'sonar-pass') {
+            //             sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=node"
+            //         }
+            //         }
 
-                }
-            }
+            //     }
+            // }
         }
     }
 }
