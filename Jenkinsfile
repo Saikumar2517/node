@@ -2,8 +2,9 @@ pipeline {
     agent any
 
     tools {
-        nodejs:'node'
+        nodejs 'node' // Assuming 'nodejs' is the name of your Node.js tool installation in Jenkins
     }
+
 
     stages {
         stage('Checkout') {
