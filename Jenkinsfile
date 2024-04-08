@@ -2,9 +2,8 @@ pipeline {
     agent any
 
     tools {
-        nodejs 'node' // Assuming 'nodejs' is the name of your Node.js tool installation in Jenkins
+        nodejs 'node'
     }
-
     stages {
         stage('Checkout') {
             steps {
@@ -25,15 +24,14 @@ pipeline {
             }
 
             stage('test') {
-                steps{
-                    sonar-scanner \
-  -Dsonar.projectKey=node \
-  -Dsonar.sources=. \
-  -Dsonar.host.url=http://localhost:9000 \
-  -Dsonar.token=sqp_1cbf29c35566b50d49b1eeb39ff56a79bfa5a31f
+                steps {
+                    def scannerHome = tool 'sonar'
+                    withSonarQubeEnv(credentialsId: 'sonar-pass') {
+                        sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=node"
+                    }
+
                 }
             }
         }
     }
-
 }
