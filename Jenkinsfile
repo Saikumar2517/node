@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout your code from your version control system
-                git 'https://github.com/Saikumar2517/node.git'
+               checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'git-pass', url: 'https://github.com/Saikumar2517/node.git']])
             }
         }
         stage('Install dependencies') {
